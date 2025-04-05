@@ -1,0 +1,11 @@
+# ใช้ image PHP ที่มี Apache มาให้เลย
+FROM php:8.2-apache
+
+# เปิดใช้งาน mod_rewrite (จำเป็นสำหรับบางเว็บ เช่น Laravel)
+RUN a2enmod rewrite
+
+# ตั้ง working directory (ถ้าต้องการ)
+WORKDIR ./carousel/sign-in/index.php
+
+
+COPY  ./carousel/sign-in/index.php
