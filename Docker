@@ -1,17 +1,17 @@
-# ใช้ PHP 8.2 ที่มี Apache มาให้
+# Use PHP 8.2 with Apache
 FROM php:8.2-apache
 
-# เปิดใช้งาน mod_rewrite ถ้าจำเป็น (ใช้กับบางเว็บเช่น Laravel)
+# Enable mod_rewrite for URL rewriting (required by some frameworks like Laravel)
 RUN a2enmod rewrite
 
-# ตั้ง working directory ภายใน container
+# Set the working directory inside the container
 WORKDIR /var/www/html
 
-# คัดลอกไฟล์ทั้งหมดจากโฟลเดอร์ปัจจุบันไปที่ container
+# Copy the files from the local machine to the container
 COPY . /var/www/html
 
-# ถ้าคุณมีไฟล์ index.php ใน subdirectory เช่น `carousel/sign-in/`
-# คัดลอกไฟล์นี้ไปยัง container (ถ้าต้องการ)
+# If you have a specific index.php file in a subdirectory like 'carousel/sign-in/'
+# Copy this file to the Apache web root (optional, if needed)
 COPY ./carousel/sign-in/index.php /var/www/html/index.php
 
-# สามารถเพิ่มการตั้งค่าอื่น ๆ ตามที่ต้องการ
+# (Optional) Add more configurations or permissions if needed
